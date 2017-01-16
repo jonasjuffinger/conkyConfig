@@ -1,0 +1,114 @@
+conky.config = {
+-- Conky settings #
+	background = false,
+	update_interval = 1,
+	double_buffer = true,
+	no_buffers = true,
+
+-- Window specifications #
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	own_window_class = 'Conky',
+	own_window_colour = '#2D2D2D',
+
+-- Window Size
+	minimum_width = 230, minimum_height = 500,
+	maximum_width = 230,
+
+-- Alignment #
+	alignment = 'top_left',
+	gap_x = 1931,
+	gap_y = 10,
+
+	border_inner_margin = 10,
+	border_outer_margin = 0,
+
+-- Graphics settings #
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+
+-- Text settings #
+	use_xft = true,
+	xftalpha = 0,
+	font = 'Roboto:size=10',
+
+	override_utf8_locale = true,
+
+	imlib_cache_size = 0,
+
+-- Color scheme #
+	default_color = '#DCDCDC',
+
+	color1 = '#0099CC',
+	color2 = '#9933CC',
+	color3 = '#669900',
+	color4 = '#d64937',
+	color5 = '#CC0000',
+	color6 = '#AAAAAA',
+	color7 = '#484848',
+
+};
+
+conky.text = [[
+${font Roboto:bold:size=9}SYSTEM ${color7}${voffset 2}${hr 2}${color}
+${font Roboto:size=9}$sysname $kernel $alignr $machine
+Uptime:$alignr$uptime
+Load Average: $alignr ${color1}$loadavg${color}
+
+${font Roboto:bold:size=9}PROCESSORS ${color7}${voffset 2}${hr 2}${color}
+${voffset -12}
+${font Roboto:size=9}$alignr${color1}${cpu cpu1}%${color}  ${freq 1}  ${voffset -12}${cpugraph cpu1 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu2}%${color}  ${freq 2}  ${voffset -12}${cpugraph cpu2 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu3}%${color}  ${freq 3}  ${voffset -12}${cpugraph cpu3 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu4}%${color}  ${freq 4}  ${voffset -12}${cpugraph cpu4 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu5}%${color}  ${freq 5}  ${voffset -12}${cpugraph cpu5 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu6}%${color}  ${freq 6}  ${voffset -12}${cpugraph cpu6 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu7}%${color}  ${freq 7}  ${voffset -12}${cpugraph cpu7 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu8}%${color}  ${freq 8}  ${voffset -12}${cpugraph cpu8 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu9}%${color}  ${freq 9}  ${voffset -12}${cpugraph cpu9 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu10}%${color}  ${freq 10}  ${voffset -12}${cpugraph cpu10 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu11}%${color}  ${freq 11}  ${voffset -12}${cpugraph cpu11 20,158 d64937 d64937}
+$alignr${color1}${cpu cpu12}%${color}  ${freq 12}  ${voffset -12}${cpugraph cpu12 20,158 d64937 d64937}
+${execi 2 sensors | grep "Core 0" | cut -d "+" -f2 | cut -c1-6}  ${execi 2 sensors | grep "Core 1" | cut -d "+" -f2 | cut -c1-6}  ${execi 2 sensors | grep "Core 2" | cut -d "+" -f2 | cut -c1-6}  ${execi 2 sensors | grep "Core 3" | cut -d "+" -f2 | cut -c1-6}  ${execi 2 sensors | grep "Core 4" | cut -d "+" -f2 | cut -c1-6}  ${execi 2 sensors | grep "Core 5" | cut -d "+" -f2 | cut -c1-6}                                        
+                       
+${font Roboto:bold:size=9}MEMORY ${color7}${voffset 2}${hr 2}${color}
+${font Roboto:size=9}RAM $alignc $mem / $memmax $alignr ${color1}$memperc %${color}
+${color4}$membar${color}
+SWAP $alignc $swap / $swapmax $alignr ${color1}$swapperc %${color}
+${color4}$swapbar${color}
+
+${font Roboto:bold:size=9}DISKS ${color7}${voffset 2}${hr 2}${color}
+${font Roboto:size=9}/ $alignc ${fs_used /} / ${fs_size /} $alignr ${color1}${fs_used_perc /} %${color}
+${color4}${fs_bar /}${color}
+${voffset 5}/home $alignc ${fs_used /home} / ${fs_size /home} $alignr ${color1}${fs_used_perc /home} %${color}
+${color4}${fs_bar /home}${color}
+${voffset 5}data $alignc ${fs_used /media/data} / ${fs_size /media/data} $alignr ${color1}${fs_used_perc /media/data} %${color}
+${color4}${fs_bar /media/data}${color}
+${voffset 5}backup $alignc ${fs_used /media/backup} / ${fs_size /media/backup} $alignr ${color1}${fs_used_perc /media/backup} %${color}
+${color4}${fs_bar /media/backup}${color}
+
+${font Roboto:bold:size=9}TOP PROCESSES ${color7}${voffset 2}${hr 2}${color}
+${font Roboto:size=9}${top name 1}${alignr}${color1}${top cpu 1} %${color}
+${top name 2}${alignr}${top cpu 2} %
+${top name 3}${alignr}${top cpu 3} %
+${top name 4}${alignr}${top cpu 4} %
+${top name 5}${alignr}${top cpu 5} %
+${top name 6}${alignr}${top cpu 6} %
+
+${font Roboto:bold:size=9}NETWORK eth0 ${color7}${voffset 2}${hr 2}${color}
+${font Roboto:size=9}IP address: $alignr ${addr eth0}
+${downspeedgraph eth0 d64937 d64937}
+DLS:  ${downspeed eth0}/s $alignr total: ${totaldown eth0}
+${upspeedgraph eth0 d64937 d64937}
+ULS:  ${upspeed eth0}/s $alignr total: ${totalup eth0}
+
+${font Roboto:bold:size=9}NETWORK eth1 ${color7}${voffset 2}${hr 2}${color}
+${font Roboto:size=9}IP address: $alignr ${addr eth1}
+${downspeedgraph eth1 15,210 d64937 d64937}
+DLS:  ${downspeed eth1}/s $alignr total: ${totaldown eth1}
+${upspeedgraph eth0 15,210 d64937 d64937}
+ULS:  ${upspeed eth1}/s $alignr total: ${totalup eth1}
+]];
